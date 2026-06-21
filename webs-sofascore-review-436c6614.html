@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sofascore · 一目了然的体育数据</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #fafafa;
+      color: #1f2937;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      padding: 0 1rem;
+    }
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 1.5rem 0 4rem 0;
+    }
+
+    /* 顶部导航 */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid #e5e7eb;
+      margin-bottom: 2.5rem;
+    }
+    .nav-brand {
+      font-size: 1.25rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: #111827;
+    }
+    .nav-brand span { color: #2563eb; }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #4b5563;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #111827; }
+
+    /* 标题与正文 */
+    h1, h2, h3 {
+      font-weight: 600;
+      line-height: 1.3;
+      letter-spacing: -0.015em;
+    }
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin: 2rem 0 0.75rem 0;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+      font-weight: 500;
+    }
+    p {
+      margin-bottom: 1.1rem;
+      color: #374151;
+    }
+    .hero {
+      margin-bottom: 2.8rem;
+    }
+    .hero p {
+      font-size: 1.05rem;
+      color: #4b5563;
+    }
+
+    /* 场景卡片 */
+    .scene-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.25rem;
+      margin: 1.5rem 0 2rem 0;
+    }
+    .scene-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 1.5rem 1.25rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+      transition: box-shadow 0.2s, transform 0.1s;
+    }
+    .scene-card:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06), 0 10px 24px rgba(0,0,0,0.04);
+      transform: translateY(-2px);
+    }
+    .scene-card .emoji {
+      font-size: 1.6rem;
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    .scene-card p {
+      font-size: 0.9rem;
+      color: #5f6b7a;
+      margin-bottom: 0;
+    }
+
+    /* 引用与提示 */
+    .tip-box {
+      background: #f3f4f6;
+      border-left: 4px solid #2563eb;
+      padding: 1rem 1.25rem;
+      border-radius: 0 12px 12px 0;
+      margin: 1.8rem 0;
+    }
+    .tip-box p {
+      margin-bottom: 0;
+      font-size: 0.95rem;
+      color: #1f2937;
+    }
+
+    /* FAQ 摘要 */
+    .faq-item {
+      border-bottom: 1px solid #e5e7eb;
+      padding: 0.9rem 0;
+    }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-question {
+      font-weight: 500;
+      color: #111827;
+      margin-bottom: 0.2rem;
+    }
+    .faq-answer {
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+
+    hr {
+      border: none;
+      height: 1px;
+      background: #e5e7eb;
+      margin: 2rem 0;
+    }
+
+    a {
+      color: #2563eb;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s;
+    }
+    a:hover {
+      border-bottom-color: #2563eb;
+    }
+    .inline-link {
+      border-bottom: 1px solid #bfdbfe;
+    }
+
+    /* 响应式 */
+    @media (max-width: 500px) {
+      .nav { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+      .nav-links { gap: 1rem; }
+      h1 { font-size: 1.8rem; }
+      .scene-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <div class="nav-brand"><span>sofa</span>score</div>
+    <ul class="nav-links">
+      <li><a href="#intro">概览</a></li>
+      <li><a href="#scenes">场景</a></li>
+      <li><a href="#faq">说明</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero" id="intro">
+    <h1>体育数据，清晰如你所想</h1>
+    <p>无论你关注的是足球、篮球还是网球，<strong>实时比分、赛程、统计</strong>——这些信息都应当一目了然。<br>
+    很多人第一次打开 <a href="https://webs-sofascore.com" class="inline-link">sofascore</a> 时，都会觉得界面清爽、数据直接，没有多余的干扰。它更像一个安静的观察者，把每一场比赛的关键数字放在你眼前。</p>
+    <p>不需要注册，不需要额外设置。打开页面，选择你喜爱的联赛或队伍，就能看到当下的局势。如果你只想快速了解某场比赛的走势，它的统计数据也能帮你省下不少时间。</p>
+  </section>
+
+  <section id="scenes">
+    <h2>三个常见使用场景</h2>
+    <div class="scene-grid">
+      <div class="scene-card">
+        <span class="emoji">📱</span>
+        <h3>通勤间隙扫一眼</h3>
+        <p>等车、排队的几分钟里，打开 sofascore 查看焦点战实时比分，不用翻找繁杂菜单。</p>
+      </div>
+      <div class="scene-card">
+        <span class="emoji">📊</span>
+        <h3>赛前快速查状态</h3>
+        <p>想知道主队近期进攻效率？直接看近期数据统计，比看长篇分析更直观。</p>
+      </div>
+      <div class="scene-card">
+        <span class="emoji">🏟️</span>
+        <h3>多场同时跟进</h3>
+        <p>周末比赛密集时，用列表模式同时关注五六场赛事，比分变化一目了然。</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="tip-box">
+    <p><strong>一点提示：</strong> 如果你发现某些联赛或杯赛的数据没有显示，可以尝试在搜索栏输入球队或赛事名称——<a href="https://webs-sofascore.com">sofascore</a> 覆盖了全球超过 2000 个比赛，大部分都能找到。</p>
+  </div>
+
+  <section id="faq">
+    <h2>常见简要说明</h2>
+    <div class="faq-item">
+      <div class="faq-question">页面上的评分是什么意思？</div>
+      <div class="faq-answer">这是 sofascore 基于球员场上表现（传球、抢断、射门等）自动计算出的综合评分，满分为 10 分，可作为参考，但不是绝对标准。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">需要付费才能使用吗？</div>
+      <div class="faq-answer">基础功能完全免费，包括实时比分、赛程、基础统计。部分高级数据或去广告功能有付费选项，但日常使用免费版已经足够。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">数据时效性怎么样？</div>
+      <div class="faq-answer">大多数主流赛事延迟在几秒以内，点球、红牌等关键事件会有实时推送。极个别低级别联赛更新稍慢，但整体可靠性不错。</div>
+    </div>
+  </section>
+
+  <hr>
+
+  <p style="font-size: 0.85rem; color: #9ca3af; text-align: center; margin-top: 1rem;">
+    简洁、直接 —— 让体育数据回归它的本质。
+  </p>
+</div>
+</body>
+</html>
